@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dyna.AI Insurance Showcase - bilingual insurance business site with live agent demos."
+    />
+    <title>Dyna.AI Insurance Showcase</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="orb orb-left"></div>
+      <div class="orb orb-right"></div>
+      <div class="page-shell">
+        <header class="header card">
+          <div class="brand">
+            <div class="brand-mark">DA</div>
+            <div>
+              <div class="eyebrow">Dyna.AI Insurance Showcase</div>
+              <div class="brand-subtitle" data-i18n="brandSubtitle"></div>
+            </div>
+          </div>
+          <nav class="nav" id="nav"></nav>
+          <div class="lang-switch card-inner">
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+        </header>
+
+        <section class="hero card" id="overview">
+          <div class="hero-copy">
+            <div class="pill" data-i18n="heroEyebrow"></div>
+            <h1 data-i18n="heroTitle"></h1>
+            <p class="lead" data-i18n="heroSubtitle"></p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#scenes" data-i18n="heroPrimary"></a>
+              <a class="btn btn-secondary" href="#demo" data-i18n="heroSecondary"></a>
+            </div>
+            <div class="stats" id="stats"></div>
+          </div>
+          <aside class="hero-panel card-inner">
+            <div class="panel-accent"></div>
+            <div class="panel-title" data-i18n="heroPanelTitle"></div>
+            <div class="panel-items" id="panelItems"></div>
+          </aside>
+        </section>
+
+        <section class="grid-3" id="capabilities"></section>
+
+        <section class="section card" id="technology">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker" data-i18n="techKicker"></div>
+              <h2 data-i18n="techTitle"></h2>
+            </div>
+            <button class="toggle-btn" id="techToggle" type="button"></button>
+          </div>
+          <div class="tech-grid" id="techGrid"></div>
+        </section>
+
+        <section class="scenes-layout" id="scenes">
+          <div class="card scene-list-card">
+            <div class="section-kicker" data-i18n="scenesKicker"></div>
+            <h2 data-i18n="scenesTitle"></h2>
+            <div class="scene-list" id="sceneList"></div>
+          </div>
+
+          <div class="card scene-detail-card" id="sceneDetail"></div>
+        </section>
+
+        <section class="card demo-card" id="demo">
+          <div class="demo-layout">
+            <div>
+              <div class="section-kicker" data-i18n="demoKicker"></div>
+              <h2 data-i18n="demoTitle"></h2>
+              <p class="lead small" data-i18n="demoSubtitle"></p>
+              <label class="field">
+                <span data-i18n="demoPromptLabel"></span>
+                <textarea id="demoPrompt" rows="6"></textarea>
+              </label>
+              <button class="btn btn-primary" id="runDemo" type="button" data-i18n="demoButton"></button>
+            </div>
+            <div class="output-card">
+              <div class="output-head">
+                <div>
+                  <div class="output-kicker" data-i18n="outputKicker"></div>
+                  <h3 id="outputTitle"></h3>
+                </div>
+                <span class="badge" id="outputBadge"></span>
+              </div>
+              <div class="sample" id="sampleResponse"></div>
+              <div class="output-note" id="outputNote"></div>
+              <div class="output-result" id="outputResult"></div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="card footer">
+          <h2 data-i18n="footerTitle"></h2>
+          <p data-i18n="footerBody"></p>
+        </footer>
+      </div>
+    </main>
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
