@@ -1,269 +1,389 @@
-window.SITE_DATA = {
-  en: {},
-  zh: {
-    brandSubtitle: "面向日本客户的保险业务介绍网页",
-    heroEyebrow: "Dyna.AI 保险事业部",
-    heroTitle: "面向日本客户的保险业务介绍与现场演示网页",
-    heroSubtitle:
-      "把公司实力、保险行业场景、以及可直接调用的 agent 演示放在同一个页面里，帮助拜访时更快讲清楚、当场演示、并顺畅推进下一步。",
-    heroPrimary: "查看保险场景",
-    heroSecondary: "体验 agent 演示",
-    heroPanelTitle: "商谈时可直接使用的结构",
-    nav: ["公司概览", "业务能力", "技术说明", "保险场景", "现场演示"],
-    stats: [
-      ["06+", "适合拜访讲解的关键模块"],
-      ["API", "可直接调用的场景演示"],
-      ["ZH / JA", "完整中文与日文切换"],
+window.DYNA_SITE = {
+  defaultLanguage: "zh",
+  languages: ["zh", "ja"],
+  homePath: "/",
+  nav: {
+    zh: [
+      { label: "核心技术", href: "#technology" },
+      { label: "实际业务场景", href: "#scenarios" },
+      { label: "Agent 体验", href: "#agents" },
     ],
-    panelItems: [
-      ["先讲公司实力", "作为入口先建立可信度。"],
-      ["并列展示保险场景", "把保全、通知、FAQ、流程引导统一呈现。"],
-      ["通过 API 立即体验", "现场直接看到 agent 的应答。"],
+    ja: [
+      { label: "コア技術", href: "#technology" },
+      { label: "業務シーン", href: "#scenarios" },
+      { label: "Agent体験", href: "#agents" },
     ],
-    capabilities: [
-      ["保险业务介绍", "把 Dyna.AI 的公司实力、行业理解和可交付能力放在客户最容易理解的业务语境里。"],
-      ["行业场景落地", "围绕保全外呼、通知提醒、FAQ、流程引导、理赔前置咨询等高频场景来讲清楚能做什么。"],
-      ["现场 agent 演示", "每个场景都能通过 API 拉起对应 agent，适合客户现场试问、试答和即时演示。"],
-    ],
-    techKicker: "技术说明",
-    techTitle: "把 agent 搭建说明讲得短，但要讲到本质",
-    techToggleOpen: "收起详情",
-    techToggleClose: "查看详情",
-    techItems: [
-      ["多轮对话", "根据上下文持续确认客户意图，避免来回重复和信息丢失。"],
-      ["FAQ / 知识问答", "结合知识库和业务规则，快速回答常见保险咨询问题。"],
-      ["流程型业务处理", "适合保单变更、通知、确认、引导等步骤明确的业务流程。"],
-      ["API / 系统对接", "通过标准 API 接入客户既有系统、agent 或工作流平台。"],
-      ["安全兜底与人工接管", "在不确定或高风险场景中及时兜底，并可平滑转人工。"],
-    ],
-    scenesKicker: "保险场景",
-    scenesTitle: "选择场景，查看详情与演示",
-    demoKicker: "现场演示",
-    demoTitle: "通过 API 拉起，现场就能继续讲",
-    demoSubtitle:
-      "这里为所选场景准备了可切换到真实 agent 的演示接口。未接入时会显示兜底回复。",
-    demoPromptLabel: "演示提示词",
-    demoButton: "运行演示",
-    outputKicker: "输出",
-    footerTitle: "让保险业务介绍页不仅能看，也能当场演示。",
-    footerBody:
-      "如果后续要接入你们已经做过的 agent，只需要把场景配置替换成真实 API 地址和参数即可扩展。",
   },
-  ja: {
-    brandSubtitle: "日本のお客さま向け保険業務紹介 Web",
-    heroEyebrow: "Dyna.AI 保険事業部",
-    heroTitle: "日本のお客さま向け保険業務紹介と実演デモのWebサイト",
-    heroSubtitle:
-      "会社の実績、保険業界の活用シーン、そしてその場で呼び出せる agent デモをひとつのページにまとめ、商談時にわかりやすく説明し、その場で体験してもらえるようにします。",
-    heroPrimary: "保険シーンを見る",
-    heroSecondary: "agent デモを体験",
-    heroPanelTitle: "商談時にそのまま使える構成",
-    nav: ["会社概要", "業務能力", "技術説明", "保険シーン", "実演デモ"],
-    stats: [
-      ["06+", "商談で伝えやすい主要モジュール"],
-      ["API", "そのまま呼べるデモ連携"],
-      ["ZH / JA", "完全な中日切り替え"],
-    ],
-    panelItems: [
-      ["会社の実績を最初に説明", "事業紹介の入口として信頼感を作ります。"],
-      ["保険シーンを横並びで提示", "保全、通知、FAQ、手続き案内をまとめて見せます。"],
-      ["API デモで即体験", "その場で agent の応答を確認できます。"],
-    ],
-    capabilities: [
-      ["保険業務の紹介", "Dyna.AI の実績、業界理解、提供可能な価値を、お客さまが理解しやすい業務文脈で伝えます。"],
-      ["業界シーンへの適用", "契約保全の架電、通知リマインド、FAQ、手続き案内、事故受付前の相談など、頻度の高いシーンを中心に紹介します。"],
-      ["その場での agent 実演", "各シーンは API 経由で対応する agent を呼び出せるため、商談中の質問、応答、即時デモに向いています。"],
-    ],
-    techKicker: "技術説明",
-    techTitle: "agent の仕組みは、短くても本質が伝わるように",
-    techToggleOpen: "詳細を閉じる",
-    techToggleClose: "詳細を見る",
-    techItems: [
-      ["マルチターン対話", "文脈を保ちながら意図を確認し、繰り返しや情報の取りこぼしを減らします。"],
-      ["FAQ / ナレッジ応答", "ナレッジベースと業務ルールを組み合わせ、保険に関する定型質問へ素早く回答します。"],
-      ["業務フロー処理", "契約変更、通知、確認、案内など、手順が明確な業務に適しています。"],
-      ["API / システム連携", "標準 API で、既存システム、agent、ワークフロープラットフォームに接続します。"],
-      ["安全なフォールバックと有人引継ぎ", "不確実または高リスクな場面では安全にフォールバックし、必要に応じて人へ引き継ぎます。"],
-    ],
-    scenesKicker: "保険シーン",
-    scenesTitle: "場面を選んで、詳細とデモを表示",
-    demoKicker: "実演デモ",
-    demoTitle: "API を呼んで、そのまま話せる状態にする",
-    demoSubtitle:
-      "ここでは選択したシーンに対して、実際の agent 接続に切り替えられるデモを用意しています。未接続時はフォールバック応答が表示されます。",
-    demoPromptLabel: "デモ用プロンプト",
-    demoButton: "デモを実行",
-    outputKicker: "出力",
-    footerTitle: "見るだけでなく、その場で実演できる保険紹介ページへ。",
-    footerBody:
-      "既存の agent をつなぐ場合は、シーン設定を実際の API エンドポイントとパラメータに差し替えるだけで拡張できます。",
+  home: {
+    zh: {
+      brandSubtitle: "保险行业 Agent 解决方案",
+      heroKicker: "Dyna.Ai Insurance Agent Solution",
+      heroTitle: "面向保险行业的 AI Agent 解决方案",
+      heroLead:
+        "通过语音、文本与业务系统联动，帮助保险公司提升客户服务、业务办理和内部知识咨询效率。",
+      primaryCta: "了解业务场景",
+      secondaryCta: "体验 Agent Demo",
+      brandLine: "Empower Work, Enrich Life",
+      proofTitle: "从客户接触到内部支持，Agent可以覆盖保险业务中的高频环节。",
+      proofLead:
+        "保险行业的 AI Agent 不是单点问答工具，而是可以连接知识、流程和语音交互的业务入口。",
+      valueCards: [
+        [
+          "提高客户服务效率",
+          "覆盖客户咨询、续保提醒、保全办理等高频服务触点，提供 7×24 小时在线支持，有效缓解人工客服资源不足的问题。",
+        ],
+        [
+          "承接业务流程",
+          "承担身份核验、信息确认与资料修改等服务流程，并对办理过程进行全程记录与追踪，确保操作可查、流程可控",
+        ],
+        ["承接客户咨询", "承接客户咨询服务，快速响应常见问题，提升服务效率与客户体验"],
+      ],
+      technologyKicker: "Core Technology",
+      technologyTitle: "让 Agent 能听懂、查得到、说得准，并能接入业务流程。",
+      technologyLead:
+        "Dyna.Ai 的保险行业方案由知识检索、语义理解、模型配置、语音能力和多形态交互共同支撑。",
+      scenarioKicker: "Business Scenarios",
+      scenarioTitle: "围绕保险客户最容易产生价值的场景展开。",
+      scenarioLead:
+        "围绕保险客户服务中的核心场景，覆盖主动触达、客户咨询、线上交互等多类服务入口，让 Agent 能力精准匹配真实业务需求。",
+      agentsKicker: "Agent Demo",
+      startAgent: "开始体验",
+      apiReady: "API Ready",
+      mockMode: "Mock Mode",
+      apiError: "API Not Configured",
+      footer: "Dyna.Ai Insurance Agent Solution",
+    },
+    ja: {
+      brandSubtitle: "保険業界向け Agent ソリューション",
+      heroKicker: "Dyna.Ai Insurance Agent Solution",
+      heroTitle: "保険業界向けAI Agentソリューション",
+      heroLead:
+        "音声、テキスト、業務システムを連携し、保険会社の顧客対応、手続き案内、社内ナレッジ活用の効率化を支援します。",
+      primaryCta: "業務シーンを見る",
+      secondaryCta: "Agent Demoを体験",
+      brandLine: "Empower Work, Enrich Life",
+      proofTitle: "顧客接点から社内支援まで、Agentは保険業務の高頻度な接点をカバーできます。",
+      proofLead:
+        "保険業界のAI Agentは単なる FAQ ではありません。ナレッジ、業務フロー、音声対話をつなぐ新しい業務入口です。",
+      valueCards: [
+        [
+          "顧客対応効率の向上",
+          "顧客相談、更新リマインド、保全手続など高頻度のサービス接点をカバーし、24時間365日のオンライン対応でコールセンターの負荷を軽減します。",
+        ],
+        [
+          "業務プロセスを支援",
+          "本人確認、情報確認、資料変更などの手続きを担い、対応プロセスを記録・追跡することで、操作の可視化とフローの制御性を高めます。",
+        ],
+        ["顧客相談のサポート", "顧客相談を受け止め、よくある質問へ素早く回答し、対応効率と顧客体験を向上させます。"],
+      ],
+      technologyKicker: "Core Technology",
+      technologyTitle: "聞き取れる、探せる、正確に答えられる、そして業務に接続できるAgent。",
+      technologyLead:
+        "Dyna.Ai の保険業界向けソリューションは、検索、意味理解、モデル設定、音声技術、多様な対話形式で構成されています。",
+      scenarioKicker: "Business Scenarios",
+      scenarioTitle: "保険会社にとって価値が出やすい業務シーンから提案します。",
+      scenarioLead:
+        "outbound、inbound、WebCall、テキスト入力まで、商談相手の検討テーマに合わせて説明しやすい構成です。",
+      agentsKicker: "Agent Demo",
+      startAgent: "体験を開始",
+      apiReady: "API Ready",
+      mockMode: "Mock Mode",
+      apiError: "API Not Configured",
+      footer: "Dyna.Ai Insurance Agent Solution",
+    },
+  },
+  technology: [
+    {
+      id: "rag",
+      zh: {
+        title: "面向保险知识的 RAG 检索增强生成",
+        body: "结合关键词检索与向量检索，在保险条款、业务规则、客户问答等复杂知识场景中提升召回率与答案准确性。",
+      },
+      ja: {
+        title: "保険ナレッジ向け RAG 検索拡張生成",
+        body: "キーワード検索とベクトル検索を組み合わせ、約款、業務ルール、問い合わせナレッジで回答精度を高めます。",
+      },
+    },
+    {
+      id: "embedding",
+      zh: {
+        title: "保险领域自研Embedding模型",
+        body: "针对保险领域的专业术语、条款表达、业务流程进行优化，使 Agent 更准确理解客户问题和内部知识内容。",
+      },
+      ja: {
+        title: "保険領域に最適化したEmbeddingモデル",
+        body: "保険用語、約款表現、業務フローを踏まえて、顧客の質問と社内ナレッジをより正確に理解します。",
+      },
+    },
+    {
+      id: "llm",
+      zh: {
+        title: "支持多模型选择与配置",
+        body: "可根据客户需求灵活选择和配置不同LLM模型，在成本、速度、稳定性和回答质量之间取得平衡。",
+      },
+      ja: {
+        title: "複数 LLM の選択と設定に対応",
+        body: "コスト、速度、安定性、回答品質のバランスに合わせて、最適なモデル構成を選択できます。",
+      },
+    },
+    {
+      id: "asr",
+      zh: {
+        title: "多家语音识别模型可选",
+        body: "支持多家外采ASR模型配置，适配实时语音、电话交互等不同业务场景。",
+      },
+      ja: {
+        title: "複数の音声認識モデルを選択可能",
+        body: "リアルタイム音声、電話応対などの利用シーンに合わせ、外部ASRモデルを柔軟に設定できます。",
+      },
+    },
+    {
+      id: "tts",
+      zh: {
+        title: "自研 TTS 模型",
+        body: "针对复杂数字、姓名、保险术语等高频表达进行优化，提升语音播报的自然度和准确性。",
+      },
+      ja: {
+        title: "自社開発TTSモデル",
+        body: "数字、氏名、保険用語などの読み上げを最適化し、自然で正確な音声案内を実現します。",
+      },
+    },
+    {
+      id: "voice",
+      zh: {
+        title: "可选音色与音色克隆服务",
+        body: "当前提供两种基础音色。若客户提供偏好的音色数据，可进一步提供音色克隆服务。",
+      },
+      ja: {
+        title: "音色選択と音色クローン",
+        body: "基本音色に加え、顧客が希望する音声データをもとに音色クローンにも対応できます。",
+      },
+    },
+    {
+      id: "interaction",
+      zh: {
+        title: "多种 Agent 交互方式",
+        body: "支持WebCall实时语音交互、文本交互及voice call交互形式",
+      },
+      ja: {
+        title: "複数のAgent対話形式",
+        body: "WebCall、テキスト対話、電話 inbound / outbound など、複数の接点で利用できます。",
+      },
+    },
+  ],
+  scenarios: [
+    {
+      id: "outbound",
+      zh: {
+        label: "Outbound 交互模式",
+        title: "车险续保提醒",
+        body: "在车险到期前，Agent 自动致电客户，提醒客户续保，并引导客户预约或前往线下门店办理续保业务。",
+      },
+      ja: {
+        label: "Outbound 対話",
+        title: "自動車保険の更新リマインド",
+        body: "満期前に Agent が顧客へ架電し、更新手続きや来店予約につなげます。",
+      },
+    },
+    {
+      id: "inbound-internal",
+      zh: {
+        label: "Inbound 交互模式",
+        title: "公司制度与手续咨询",
+        body: "公司内部员工及各支店员工可随时致电 Agent，询问福利制度、内部规定、手续申请方式或负责人联系方式。",
+      },
+      ja: {
+        label: "Inbound 対話",
+        title: "社内制度と手続き相談",
+        body: "本社や支店の社員が、福利厚生、社内規程、申請方法、担当者情報をいつでも確認できます。",
+      },
+    },
+    {
+      id: "inbound-customer",
+      zh: {
+        label: "Inbound 交互模式",
+        title: "客户咨询与保全业务办理",
+        body: "Agent 可回答客户保险相关咨询，并完成部分线上保全业务，实现从身份核验到信息变更的流程承接。",
+      },
+      ja: {
+        label: "Inbound 対話",
+        title: "顧客相談と保全手続き",
+        body: "保険に関する問い合わせに回答し、本人確認から情報変更まで一部の契約保全業務を支援します。",
+      },
+    },
+    {
+      id: "webcall",
+      zh: {
+        label: "WebCall & 文本输入",
+        title: "线上客户服务与保全办理",
+        body: "客户可通过 WebCall 或文本输入咨询保险业务，并完成身份核验、信息确认、信息变更和后续引导。",
+      },
+      ja: {
+        label: "WebCall / テキスト",
+        title: "オンライン顧客対応と保全手続",
+        body: "WebCall またはテキスト入力で、本人確認、情報確認、情報変更、次の手続き案内まで進めます。",
+      },
+    },
+  ],
+  agents: [
+    {
+      id: "auto-renewal",
+      path: "/agents/auto-renewal/",
+      mode: "outbound",
+      zh: {
+        name: "车险续保提醒 Agent",
+        short: "到期前主动触达客户，确认续保意向并引导下一步。",
+        intro: "适合展示 outbound 场景中，Agent 如何完成提醒、确认、预约引导和状态记录。",
+        placeholder: "请输入客户可能会提出的问题，或让 Agent 模拟一次续保提醒。",
+        opening: "您好，我是 Dyna.Ai 车险续保提醒 Agent。可以模拟续保提醒、预约引导和客户异议处理。",
+        reply:
+          "我会先说明保单即将到期，再确认客户是否方便办理续保。如果客户有兴趣，我会继续引导预约门店或确认后续联系方式。",
+      },
+      ja: {
+        name: "自動車保険更新リマインド Agent",
+        short: "満期前に顧客へ連絡し、更新意向と次の手続きを確認します。",
+        intro: "outbound シーンで、案内、確認、予約誘導、ステータス記録まで進める流れを示します。",
+        placeholder: "顧客からの質問、または更新リマインドのシミュレーション内容を入力してください。",
+        opening: "Dyna.Ai 自動車保険更新リマインド Agent です。更新案内、予約誘導、異議対応をデモできます。",
+        reply:
+          "まず満期が近いことを丁寧にお伝えし、更新手続きのご意向を確認します。必要に応じて来店予約や次回連絡につなげます。",
+      },
+    },
+    {
+      id: "insurance-consulting",
+      path: "/agents/insurance-consulting/",
+      mode: "inbound",
+      zh: {
+        name: "保险业务咨询 Agent",
+        short: "回答客户关于保险相关常见问题。",
+        intro: "适合展示客户咨询场景中，Agent 如何结合知识库和统一口径完成高频问答。",
+        placeholder: "请输入客户关于保单、缴费、条款或服务流程的问题。",
+        opening: "您好，我是 Dyna.Ai 保险业务咨询 Agent。可以回答保单、条款、缴费和服务流程相关问题。",
+        reply:
+          "我会先识别问题类型，再基于知识库给出清晰答复。若问题涉及复杂判断或敏感信息，我会建议转人工继续处理。",
+      },
+      ja: {
+        name: "保険業務相談 Agent",
+        short: "契約、約款、保険料、手続きに関する質問に回答します。",
+        intro: "顧客問い合わせで、ナレッジと統一された回答方針を使った FAQ 対応を示します。",
+        placeholder: "契約、保険料、約款、手続きについて質問を入力してください。",
+        opening: "Dyna.Ai 保険業務相談 Agent です。契約、約款、保険料、手続きに関する質問に回答できます。",
+        reply:
+          "質問の種類を確認し、ナレッジに基づいてわかりやすく回答します。複雑またはセンシティブな内容は担当者へ引き継ぎます。",
+      },
+    },
+    {
+      id: "policy-service",
+      path: "/agents/policy-service/",
+      mode: "inbound/webcall",
+      zh: {
+        name: "保全业务办理 Agent",
+        short: "承接身份核验、信息确认、资料更新和后续办理引导。",
+        intro: "适合展示从咨询到部分线上办理的流程型 Agent 能力。",
+        placeholder: "请输入客户希望变更地址、电话、受益人等保全信息的需求。",
+        opening: "您好，我是 Dyna.Ai 保全业务办理 Agent。可以协助演示身份核验、信息确认和变更引导。",
+        reply:
+          "我会先确认办理事项，再引导客户完成身份核验和必要信息确认。可以线上处理的部分会继续推进，必须线下办理的事项会给出明确指引。",
+      },
+      ja: {
+        name: "保全手続き Agent",
+        short: "本人確認、情報確認、変更受付、次の手続き案内を支援します。",
+        intro: "問い合わせから一部オンライン手続きまで進める、フロー型 Agent の能力を示します。",
+        placeholder: "住所、電話番号、受取人などの変更要望を入力してください。",
+        opening: "Dyna.Ai 保全手続き Agent です。本人確認、情報確認、変更案内をデモできます。",
+        reply:
+          "まず手続き内容を確認し、本人確認と必要情報の確認へ進みます。オンライン対応が可能な場合はそのまま進め、来店が必要な場合は次の手順をご案内します。",
+      },
+    },
+    {
+      id: "internal-support",
+      path: "/agents/internal-support/",
+      mode: "inbound",
+      zh: {
+        name: "内部制度咨询 Agent",
+        short: "为总部与支店员工提供制度、手续和负责人信息咨询。",
+        intro: "适合展示企业内部知识问答和运营支持场景，减少人工重复答疑。",
+        placeholder: "请输入员工关于公司制度、手续申请或负责人联系方式的问题。",
+        opening: "您好，我是 Dyna.Ai 内部制度咨询 Agent。可以回答福利制度、内部规定和手续申请相关问题。",
+        reply:
+          "我会根据内部知识库确认制度口径，并给出申请路径、注意事项和负责人信息。若内容需要审批，我会提示员工进入对应流程。",
+      },
+      ja: {
+        name: "社内制度相談 Agent",
+        short: "本社と支店社員に、制度、手続き、担当者情報を案内します。",
+        intro: "社内ナレッジ応答と運用支援のシーンを示し、繰り返しの問い合わせを削減します。",
+        placeholder: "社内制度、申請手続き、担当者連絡先に関する質問を入力してください。",
+        opening: "Dyna.Ai 社内制度相談 Agent です。福利厚生、社内規程、申請方法に関する質問に回答できます。",
+        reply:
+          "社内ナレッジに基づいて制度内容を確認し、申請経路、注意点、担当者情報をご案内します。承認が必要な場合は該当フローへ誘導します。",
+      },
+    },
+    {
+      id: "store-reservation",
+      path: "/agents/store-reservation/",
+      mode: "outbound",
+      zh: {
+        name: "门店预约引导 Agent",
+        short: "在需要线下办理时，引导客户预约门店和准备材料。",
+        intro: "适合展示 Agent 如何在无法线上闭环时，仍然给客户清晰的下一步。",
+        placeholder: "请输入客户需要线下办理或预约门店的场景。",
+        opening: "您好，我是 Dyna.Ai 门店预约引导 Agent。可以协助客户确认预约目的、门店和所需材料。",
+        reply:
+          "我会先确认客户要办理的业务，再说明是否需要线下办理。如果需要到店，我会引导选择门店、预约时间，并提醒准备材料。",
+      },
+      ja: {
+        name: "来店予約案内 Agent",
+        short: "来店が必要な場合に、予約と必要書類を案内します。",
+        intro: "オンラインで完結しない場面でも、顧客に明確な次アクションを提示する流れを示します。",
+        placeholder: "来店手続きや店舗予約が必要な場面を入力してください。",
+        opening: "Dyna.Ai 来店予約案内 Agent です。予約目的、店舗、必要書類の確認をサポートします。",
+        reply:
+          "まず手続き内容を確認し、来店が必要かどうかをご案内します。必要な場合は店舗、予約時間、持参書類を順番に確認します。",
+      },
+    },
+  ],
+  agentPage: {
+    zh: {
+      back: "返回 Landing Page",
+      statusLabel: "API 状态",
+      conversation: "对话消息",
+      inputLabel: "输入消息",
+      send: "发送",
+      voice: "WebCall",
+      voiceStart: "开始 WebCall",
+      voiceStop: "结束 WebCall",
+      voiceListening: "正在聆听...",
+      voiceSpeaking: "正在播报...",
+      voiceUnsupported: "当前浏览器不支持网页语音识别。请使用 Chrome，并允许麦克风权限。",
+      voicePermission: "麦克风权限未开启，无法使用 WebCall。请允许浏览器访问麦克风后再试。",
+      fallbackTitle: "演示回复",
+      empty: "输入一条消息，查看 Agent 如何回应。",
+      unavailable: "API 调用失败，当前显示本地兜底回复。",
+      apiNotConfigured: "真实 Agent API 尚未配置。请在 Vercel 环境变量中配置该 Agent 的接口地址后再试。",
+      notFoundTitle: "未找到 Agent",
+      notFoundBody: "请返回首页重新选择体验入口。",
+      titleSuffix: "Dyna.Ai Agent Demo",
+    },
+    ja: {
+      back: "Landing Page に戻る",
+      statusLabel: "API 状態",
+      conversation: "対話メッセージ",
+      inputLabel: "メッセージ入力",
+      send: "送信",
+      voice: "WebCall",
+      voiceStart: "WebCall開始",
+      voiceStop: "WebCall終了",
+      voiceListening: "音声入力中...",
+      voiceSpeaking: "音声再生中...",
+      voiceUnsupported: "このブラウザは音声認識に対応していません。Chromeでマイク権限を許可してください。",
+      voicePermission: "マイク権限が許可されていないため、WebCallを利用できません。",
+      fallbackTitle: "デモ応答",
+      empty: "メッセージを入力すると、Agent の応答を確認できます。",
+      unavailable: "API 呼び出しに失敗したため、ローカルのフォールバック応答を表示しています。",
+      apiNotConfigured: "実 Agent API がまだ設定されていません。Vercel の環境変数に対象 Agent の接続先を設定してください。",
+      notFoundTitle: "Agent が見つかりません",
+      notFoundBody: "トップページに戻って体験入口を選択してください。",
+      titleSuffix: "Dyna.Ai Agent Demo",
+    },
   },
 };
-
-window.SCENES = [
-  {
-    id: "policy-service-call",
-    label: { zh: "保全外呼", ja: "契約保全の架電" },
-    eyebrow: { zh: "高价值场景", ja: "重点シーン" },
-    summary: {
-      zh: "围绕保单内容确认、信息更新和服务提醒，演示 agent 如何把标准化外呼流程讲清楚、问清楚、并记录清楚。",
-      ja: "契約内容の確認、情報更新、サービス通知を中心に、agent が標準化された架電フローをどのように案内し、確認し、記録するかを示します。",
-    },
-    detail: {
-      zh: "适合向日本保险客户展示“能把重复、标准、需要确认的电话业务交给 agent 处理”的价值。",
-      ja: "日本の保険会社に対して、繰り返しが多く、標準化された確認電話を agent に任せられる価値を伝えるのに向いています。",
-    },
-    bullets: {
-      title: { zh: "可展示点", ja: "見せどころ" },
-      items: [
-        { zh: "确认保单信息是否需要更新", ja: "契約情報の更新有無を確認" },
-        { zh: "按话术进行温和提醒和复述确认", ja: "丁寧な案内と復唱確認" },
-        { zh: "在异常回答时自动转入人工接管", ja: "例外時は有人対応へスムーズに切替" },
-      ],
-    },
-    agentName: { zh: "保全外呼 Agent", ja: "契約保全 Agent" },
-    agentId: "agent-policy-service",
-    endpointHint: "/api/demo",
-    apiPrompt: {
-      zh: "请模拟一次保险保全外呼，重点确认客户是否有地址、联系电话或受益人信息变更。",
-      ja: "保険の契約保全架電を想定し、住所・電話番号・受取人情報の変更有無を丁寧に確認してください。",
-    },
-    demoButton: { zh: "体验保全外呼", ja: "保全架電を体験" },
-    exampleResponse: {
-      zh: "您好，这里是 Dyna.AI 保险服务助手。为了确保您的保单信息保持最新，我们想简单确认一下您的联系方式和受益人信息是否需要更新。",
-      ja: "Dyna.AI 保険サービスアシスタントです。ご契約情報を最新に保つため、連絡先と受取人情報に変更がないか簡単に確認します。",
-    },
-  },
-  {
-    id: "policy-faq",
-    label: { zh: "保单 FAQ", ja: "契約 FAQ" },
-    eyebrow: { zh: "常见问题", ja: "定型質問" },
-    summary: {
-      zh: "展示 agent 如何快速回答保单、条款和服务流程相关问题，同时保持表述清晰、可追溯。",
-      ja: "保険契約、約款、手続きに関する質問へ、agent が素早くわかりやすく回答し、必要に応じて根拠を残す流れを見せます。",
-    },
-    detail: {
-      zh: "适合把“客户大量重复咨询”变成“标准化、可扩展、可审计的应答能力”。",
-      ja: "多くの繰り返し問い合わせを、標準化・拡張可能・確認しやすい応答へ変える用途です。",
-    },
-    bullets: {
-      title: { zh: "可展示点", ja: "見せどころ" },
-      items: [
-        { zh: "保单、缴费、条款咨询的标准答复", ja: "契約・保険料・約款の定型回答" },
-        { zh: "基于知识库进行统一口径回复", ja: "ナレッジに基づく統一回答" },
-        { zh: "复杂问题时给出人工转接建议", ja: "難しい質問では有人対応を案内" },
-      ],
-    },
-    agentName: { zh: "FAQ Agent", ja: "FAQ Agent" },
-    agentId: "agent-policy-faq",
-    endpointHint: "/api/demo",
-    apiPrompt: {
-      zh: "请作为保险 FAQ 助手，回答客户关于保单缴费方式和条款查询的常见问题。",
-      ja: "保険 FAQ アシスタントとして、保険料の支払い方法と約款確認に関する一般的な質問へ答えてください。",
-    },
-    demoButton: { zh: "体验 FAQ 应答", ja: "FAQ 応答を体験" },
-    exampleResponse: {
-      zh: "关于缴费方式，您可以通过指定账户、柜台或线上渠道办理。若您愿意，我可以进一步确认您目前对应的保单流程。",
-      ja: "保険料のお支払い方法は、口座振替、窓口、オンラインのいずれかでご案内できます。必要であれば現在のご契約に合わせて詳しく確認します。",
-    },
-  },
-  {
-    id: "renewal-reminder",
-    label: { zh: "续保提醒", ja: "更新リマインド" },
-    eyebrow: { zh: "通知业务", ja: "通知シーン" },
-    summary: {
-      zh: "通过提醒话术、身份确认和下一步动作引导，展示 agent 如何做可控、可规模化的通知触达。",
-      ja: "案内文、本人確認、次の行動導線を通して、agent がどのように制御された通知を大規模に行うかを示します。",
-    },
-    detail: {
-      zh: "适合解释“不是简单群发，而是带确认、带状态、带后续动作的通知流程”。",
-      ja: "単なる一斉送信ではなく、確認・状態管理・次アクションまで含む通知フローであることを説明しやすいです。",
-    },
-    bullets: {
-      title: { zh: "可展示点", ja: "見せどころ" },
-      items: [
-        { zh: "续保日期或缴费提醒的统一触达", ja: "更新日や保険料のリマインド" },
-        { zh: "根据客户回答进入后续流程", ja: "顧客の回答に応じて次の処理へ分岐" },
-        { zh: "保留状态与回访记录", ja: "状態と再連絡履歴を保持" },
-      ],
-    },
-    agentName: { zh: "通知 Agent", ja: "通知 Agent" },
-    agentId: "agent-renewal-reminder",
-    endpointHint: "/api/demo",
-    apiPrompt: {
-      zh: "请模拟一次保险续保提醒，语气专业但亲和，并在末尾引导客户确认下一步。",
-      ja: "保険の更新リマインドを実演してください。丁寧で親しみのある口調で、最後に次のステップ確認へつなげてください。",
-    },
-    demoButton: { zh: "体验续保提醒", ja: "更新リマインドを体験" },
-    exampleResponse: {
-      zh: "您好，这里是 Dyna.AI 保险提醒助手。您的保单将于近期进入更新窗口，是否方便确认一下后续办理方式？",
-      ja: "Dyna.AI 保険リマインドアシスタントです。ご契約はまもなく更新時期を迎えます。お手続き方法を簡単に確認してもよろしいでしょうか。",
-    },
-  },
-  {
-    id: "claim-guidance",
-    label: { zh: "理赔前置咨询", ja: "事故受付前の案内" },
-    eyebrow: { zh: "流程引导", ja: "案内フロー" },
-    summary: {
-      zh: "展示 agent 如何在客户正式进入理赔前，先做信息收集、材料引导和风险分流。",
-      ja: "正式な保険金請求に入る前に、情報収集、必要書類の案内、リスクの振り分けを agent が行う流れを示します。",
-    },
-    detail: {
-      zh: "适合体现 agent 对流程控制和用户安抚的能力，减少客户焦虑和人工重复接待。",
-      ja: "フロー管理と顧客の安心感の両方を伝えられ、問い合わせの重複を減らす用途です。",
-    },
-    bullets: {
-      title: { zh: "可展示点", ja: "見せどころ" },
-      items: [
-        { zh: "先问事实，再引导材料准备", ja: "状況確認の後に必要書類を案内" },
-        { zh: "判断是否需要人工介入", ja: "有人対応が必要かを判断" },
-        { zh: "把客户带到下一流程节点", ja: "次の手続きへスムーズに接続" },
-      ],
-    },
-    agentName: { zh: "理赔前置 Agent", ja: "事故受付前 Agent" },
-    agentId: "agent-claim-guidance",
-    endpointHint: "/api/demo",
-    apiPrompt: {
-      zh: "请模拟一次理赔前置咨询，先确认事故情况，再说明需要准备哪些资料。",
-      ja: "事故受付前の案内を想定し、事故状況を確認したうえで必要書類を案内してください。",
-    },
-    demoButton: { zh: "体验理赔引导", ja: "案内フローを体験" },
-    exampleResponse: {
-      zh: "请先简单说明事故发生的时间、地点和情况。确认后，我们会引导您准备必要材料，并判断是否需要人工协助。",
-      ja: "まず事故の日時、場所、状況を簡単にお聞かせください。そのうえで必要書類をご案内し、必要に応じて担当者へおつなぎします。",
-    },
-  },
-  {
-    id: "handoff-flow",
-    label: { zh: "人工转接", ja: "有人引継ぎ" },
-    eyebrow: { zh: "安全兜底", ja: "フォールバック" },
-    summary: {
-      zh: "说明 agent 如何在识别到复杂、敏感或高风险内容时及时转给人工。",
-      ja: "複雑・センシティブ・高リスクな内容を検知した際に、agent がどのように人へ引き継ぐかを示します。",
-    },
-    detail: {
-      zh: "适合强调日本客户最在意的信赖感、准确性和可控性。",
-      ja: "日本の商談で重視される信頼性、正確性、制御性を伝えやすいシーンです。",
-    },
-    bullets: {
-      title: { zh: "可展示点", ja: "見せどころ" },
-      items: [
-        { zh: "识别高风险问题并及时升级", ja: "高リスク質問を検知して即時エスカレーション" },
-        { zh: "保留上下文，减少重复解释", ja: "文脈を引き継ぎ、再説明を減らす" },
-        { zh: "给客户一个明确下一步", ja: "顧客に明確な次アクションを提示" },
-      ],
-    },
-    agentName: { zh: "接管 Agent", ja: "有人引継ぎ Agent" },
-    agentId: "agent-handoff",
-    endpointHint: "/api/demo",
-    apiPrompt: {
-      zh: "请模拟一次需要人工接管的保险咨询，先礼貌说明原因，再引导转人工。",
-      ja: "有人対応が必要な保険相談を想定し、理由を丁寧に説明したうえで担当者へ引き継いでください。",
-    },
-    demoButton: { zh: "体验转接演示", ja: "引継ぎデモを体験" },
-    exampleResponse: {
-      zh: "为了更准确地帮助您，这个问题我将转给专员继续处理。接下来我会保留您的上下文，帮助您更快完成后续沟通。",
-      ja: "より正確にご案内するため、この件は専門担当へ引き継ぎます。ここまでの内容は保持したまま、次のご案内へ進めます。",
-    },
-  },
-];

@@ -5,107 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Dyna.AI Insurance Showcase - bilingual insurance business site with live agent demos."
+      content="Dyna.Ai insurance industry AI Agent solution landing page and demo."
     />
-    <title>Dyna.AI Insurance Showcase</title>
+    <title>Dyna.Ai Insurance Agent Solution</title>
     <link rel="icon" href="/favicon.svg" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=20260626-real-api" />
   </head>
   <body>
-    <main class="page">
-      <div class="orb orb-left"></div>
-      <div class="orb orb-right"></div>
-      <div class="page-shell">
-        <header class="header card">
-          <div class="brand">
-            <div class="brand-mark">DA</div>
-            <div>
-              <div class="eyebrow">Dyna.AI Insurance Showcase</div>
-              <div class="brand-subtitle" data-i18n="brandSubtitle"></div>
-            </div>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#hero" aria-label="Dyna.Ai">
+          <span class="brand-mark">DA</span>
+          <span>
+            <span class="brand-name">Dyna.Ai</span>
+            <span class="brand-subtitle" data-i18n="brandSubtitle"></span>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+          Menu
+        </button>
+        <div class="header-actions" id="siteNav">
+          <nav class="site-nav" aria-label="Primary navigation"></nav>
+          <div class="language-toggle" aria-label="Language switch">
+            <button type="button" data-lang="ja">JP</button>
+            <button type="button" data-lang="zh">CN</button>
           </div>
-          <nav class="nav" id="nav"></nav>
-          <div class="lang-switch card-inner">
-            <button class="lang-btn" data-lang="zh">中文</button>
-            <button class="lang-btn" data-lang="ja">日本語</button>
-          </div>
-        </header>
+        </div>
+      </header>
 
-        <section class="hero card" id="overview">
+      <main>
+        <section class="hero-section" id="hero">
           <div class="hero-copy">
-            <div class="pill" data-i18n="heroEyebrow"></div>
+            <p class="section-kicker" data-i18n="heroKicker"></p>
             <h1 data-i18n="heroTitle"></h1>
-            <p class="lead" data-i18n="heroSubtitle"></p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="#scenes" data-i18n="heroPrimary"></a>
-              <a class="btn btn-secondary" href="#demo" data-i18n="heroSecondary"></a>
+            <p class="hero-lead" data-i18n="heroLead"></p>
+            <div class="action-row">
+              <a class="button button-primary" href="#scenarios" data-i18n="primaryCta"></a>
+              <a class="button button-secondary" href="#agents" data-i18n="secondaryCta"></a>
             </div>
-            <div class="stats" id="stats"></div>
           </div>
-          <aside class="hero-panel card-inner">
-            <div class="panel-accent"></div>
-            <div class="panel-title" data-i18n="heroPanelTitle"></div>
-            <div class="panel-items" id="panelItems"></div>
-          </aside>
-        </section>
-
-        <section class="grid-3" id="capabilities"></section>
-
-        <section class="section card" id="technology">
-          <div class="section-head">
-            <div>
-              <div class="section-kicker" data-i18n="techKicker"></div>
-              <h2 data-i18n="techTitle"></h2>
-            </div>
-            <button class="toggle-btn" id="techToggle" type="button"></button>
-          </div>
-          <div class="tech-grid" id="techGrid"></div>
-        </section>
-
-        <section class="scenes-layout" id="scenes">
-          <div class="card scene-list-card">
-            <div class="section-kicker" data-i18n="scenesKicker"></div>
-            <h2 data-i18n="scenesTitle"></h2>
-            <div class="scene-list" id="sceneList"></div>
-          </div>
-
-          <div class="card scene-detail-card" id="sceneDetail"></div>
-        </section>
-
-        <section class="card demo-card" id="demo">
-          <div class="demo-layout">
-            <div>
-              <div class="section-kicker" data-i18n="demoKicker"></div>
-              <h2 data-i18n="demoTitle"></h2>
-              <p class="lead small" data-i18n="demoSubtitle"></p>
-              <label class="field">
-                <span data-i18n="demoPromptLabel"></span>
-                <textarea id="demoPrompt" rows="6"></textarea>
-              </label>
-              <button class="btn btn-primary" id="runDemo" type="button" data-i18n="demoButton"></button>
-            </div>
-            <div class="output-card">
-              <div class="output-head">
-                <div>
-                  <div class="output-kicker" data-i18n="outputKicker"></div>
-                  <h3 id="outputTitle"></h3>
-                </div>
-                <span class="badge" id="outputBadge"></span>
-              </div>
-              <div class="sample" id="sampleResponse"></div>
-              <div class="output-note" id="outputNote"></div>
-              <div class="output-result" id="outputResult"></div>
+          <div class="brand-panel" aria-label="Dyna.Ai brand panel">
+            <div class="panel-logo">Dyna.Ai</div>
+            <div class="panel-line" data-i18n="brandLine"></div>
+            <div class="panel-metrics">
+              <span>RAG</span>
+              <span>ASR</span>
+              <span>TTS</span>
+              <span>LLM</span>
             </div>
           </div>
         </section>
 
-        <footer class="card footer">
-          <h2 data-i18n="footerTitle"></h2>
-          <p data-i18n="footerBody"></p>
-        </footer>
-      </div>
-    </main>
-    <script src="/data.js"></script>
-    <script src="/script.js"></script>
+        <section class="value-section" aria-labelledby="valueTitle">
+          <div class="section-intro">
+            <h2 id="valueTitle" data-i18n="proofTitle"></h2>
+            <p data-i18n="proofLead"></p>
+          </div>
+          <div class="value-grid" id="valueGrid"></div>
+        </section>
+
+        <section class="content-section" id="technology" aria-labelledby="technologyTitle">
+          <div class="section-intro">
+            <p class="section-kicker" data-i18n="technologyKicker"></p>
+            <h2 id="technologyTitle" data-i18n="technologyTitle"></h2>
+            <p data-i18n="technologyLead"></p>
+          </div>
+          <div class="technology-grid" id="technologyGrid"></div>
+        </section>
+
+        <section class="content-section scenario-section" id="scenarios" aria-labelledby="scenarioTitle">
+          <div class="section-intro">
+            <p class="section-kicker" data-i18n="scenarioKicker"></p>
+            <h2 id="scenarioTitle" data-i18n="scenarioTitle"></h2>
+            <p data-i18n="scenarioLead"></p>
+          </div>
+          <div class="scenario-list" id="scenarioList"></div>
+        </section>
+
+        <section class="content-section" id="agents">
+          <div class="section-intro">
+            <p class="section-kicker" data-i18n="agentsKicker"></p>
+          </div>
+          <div class="agent-grid" id="agentGrid"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span data-i18n="footer"></span>
+      </footer>
+    </div>
+
+    <script src="/data.js?v=20260626-real-api"></script>
+    <script src="/script.js?v=20260626-real-api"></script>
   </body>
 </html>

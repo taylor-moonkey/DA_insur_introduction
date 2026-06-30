@@ -1,214 +1,133 @@
-const data = window.SITE_DATA;
-const scenes = window.SCENES;
-let language = "zh";
-let activeSceneId = scenes[0].id;
-let techExpanded = true;
+const site = window.DYNA_SITE;
+const languageButtons = Array.from(document.querySelectorAll("[data-lang]"));
+const nav = document.querySelector(".site-nav");
+const menuToggle = document.querySelector(".menu-toggle");
+const headerActions = document.querySelector(".header-actions");
+const valueGrid = document.getElementById("valueGrid");
+const technologyGrid = document.getElementById("technologyGrid");
+const scenarioList = document.getElementById("scenarioList");
+const agentGrid = document.getElementById("agentGrid");
 
-const nav = document.getElementById("nav");
-const stats = document.getElementById("stats");
-const panelItems = document.getElementById("panelItems");
-const capabilitySection = document.getElementById("capabilities");
-const techGrid = document.getElementById("techGrid");
-const techToggle = document.getElementById("techToggle");
-const sceneList = document.getElementById("sceneList");
-const sceneDetail = document.getElementById("sceneDetail");
-const demoPrompt = document.getElementById("demoPrompt");
-const demoButton = document.getElementById("runDemo");
-const outputTitle = document.getElementById("outputTitle");
-const outputBadge = document.getElementById("outputBadge");
-const sampleResponse = document.getElementById("sampleResponse");
-const outputNote = document.getElementById("outputNote");
-const outputResult = document.getElementById("outputResult");
-const langButtons = Array.from(document.querySelectorAll(".lang-btn"));
-
-function t(key) {
-  return data[language][key];
+function getLanguage() {
+  const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+  const stored = window.localStorage.getItem("dyna-language");
+  if (site.languages.includes(urlLanguage)) return urlLanguage;
+  return site.languages.includes(stored) ? stored : site.defaultLanguage;
 }
 
-function sceneText(scene, key) {
-  return scene[key][language];
+function setLanguage(language) {
+  window.localStorage.setItem("dyna-language", language);
+  document.documentElement.lang = language === "ja" ? "ja" : "zh";
+  render(language);
 }
 
-function el(tag, className, html) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (html !== undefined) node.innerHTML = html;
-  return node;
+function t(language, key) {
+  return site.home[language][key] || "";
 }
 
-function setLanguage(nextLanguage) {
-  language = nextLanguage;
-  document.documentElement.lang = language;
-  langButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.lang === language);
+function translated(item, language) {
+  return item[language] || item.zh;
+}
+
+function createElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function renderStaticText(language) {
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = t(language, element.dataset.i18n);
   });
-  renderAll();
 }
 
-function renderNav() {
+function renderNav(language) {
   nav.innerHTML = "";
-  t("nav").forEach((item, index) => {
-    const link = document.createElement("a");
-    link.href = ["#overview", "#capabilities", "#technology", "#scenes", "#demo"][index];
-    link.textContent = item;
+  site.nav[language].forEach((item) => {
+    const link = createElement("a", "", item.label);
+    link.href = item.href;
+    link.addEventListener("click", () => {
+      headerActions.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
     nav.appendChild(link);
   });
 }
 
-function renderStats() {
-  stats.innerHTML = "";
-  t("stats").forEach(([value, label]) => {
-    const card = el("article", "stat");
-    card.appendChild(el("div", "value", value));
-    card.appendChild(el("div", "label", label));
-    stats.appendChild(card);
+function renderValues(language) {
+  valueGrid.innerHTML = "";
+  t(language, "valueCards").forEach(([title, body], index) => {
+    const card = createElement("article", "value-card");
+    card.appendChild(createElement("span", "card-index", `0${index + 1}`));
+    card.appendChild(createElement("h3", "", title));
+    card.appendChild(createElement("p", "", body));
+    valueGrid.appendChild(card);
   });
 }
 
-function renderPanel() {
-  panelItems.innerHTML = "";
-  t("panelItems").forEach(([title, body]) => {
-    const card = el("article", "mini-card");
-    card.appendChild(el("h3", "", title));
-    card.appendChild(el("p", "", body));
-    panelItems.appendChild(card);
+function renderTechnology(language) {
+  technologyGrid.innerHTML = "";
+  site.technology.forEach((item) => {
+    const text = translated(item, language);
+    const card = createElement("article", "technology-card");
+    card.appendChild(createElement("span", "tech-id", item.id.toUpperCase()));
+    card.appendChild(createElement("h3", "", text.title));
+    card.appendChild(createElement("p", "", text.body));
+    technologyGrid.appendChild(card);
   });
 }
 
-function renderCapabilities() {
-  capabilitySection.innerHTML = "";
-  t("capabilities").forEach(([title, body]) => {
-    const card = el("article", "cap-card");
-    card.appendChild(el("h3", "", title));
-    card.appendChild(el("p", "", body));
-    capabilitySection.appendChild(card);
+function renderScenarios(language) {
+  scenarioList.innerHTML = "";
+  site.scenarios.forEach((item) => {
+    const text = translated(item, language);
+    const card = createElement("article", "scenario-item");
+    card.appendChild(createElement("span", "scenario-label", text.label));
+    card.appendChild(createElement("h3", "", text.title));
+    card.appendChild(createElement("p", "", text.body));
+    scenarioList.appendChild(card);
   });
 }
 
-function renderTech() {
-  techGrid.innerHTML = "";
-  techGrid.classList.toggle("tech-collapsed", !techExpanded);
-  t("techItems").forEach(([title, body]) => {
-    const card = el("article", "tech-card");
-    card.appendChild(el("h3", "", title));
-    card.appendChild(el("p", "", body));
-    techGrid.appendChild(card);
-  });
-  techToggle.textContent = techExpanded ? t("techToggleOpen") : t("techToggleClose");
-}
-
-function renderScenes() {
-  sceneList.innerHTML = "";
-  scenes.forEach((scene) => {
-    const btn = el("button", `scene-btn${scene.id === activeSceneId ? " is-active" : ""}`);
-    btn.type = "button";
-    btn.innerHTML = `
-      <span class="scene-flag">${scene.eyebrow[language]}</span>
-      <h3>${scene.label[language]}</h3>
-      <p>${scene.summary[language]}</p>
-    `;
-    btn.addEventListener("click", () => {
-      activeSceneId = scene.id;
-      renderScenes();
-      renderSceneDetail();
-      demoPrompt.value = scene.apiPrompt[language];
-      outputTitle.textContent = scene.label[language];
-      outputBadge.textContent = scene.agentId;
-      sampleResponse.innerHTML = `<div class="sample-label">${language === "ja" ? "サンプル応答" : "示例回复"}</div><p>${scene.exampleResponse[language]}</p>`;
-      outputNote.innerHTML = `<div class="note-label">${language === "ja" ? "説明" : "说明"}</div><p>${language === "ja" ? "右の出力欄に、選択したシーンの応答が表示されます。API が未接続の間は、商談用のフォールバック応答が使われます。" : "右侧输出区会显示所选场景的回复。API 尚未接入时，会使用适合拜访演示的兜底回复。"}</p>`;
-      outputResult.innerHTML = "";
-    });
-    sceneList.appendChild(btn);
+function renderAgents(language) {
+  agentGrid.innerHTML = "";
+  site.agents.forEach((agent) => {
+    const text = translated(agent, language);
+    const link = createElement("a", "agent-card");
+    link.href = `${agent.path}?lang=${language}`;
+    link.appendChild(createElement("span", "agent-mode", agent.mode));
+    link.appendChild(createElement("h3", "", text.name));
+    link.appendChild(createElement("p", "", text.short));
+    const cta = createElement("span", "agent-cta", t(language, "startAgent"));
+    link.appendChild(cta);
+    agentGrid.appendChild(link);
   });
 }
 
-function renderSceneDetail() {
-  const scene = scenes.find((item) => item.id === activeSceneId) || scenes[0];
-  sceneDetail.innerHTML = "";
-  const wrap = el("div", "scene-detail-inner");
-  wrap.innerHTML = `
-    <div>
-      <div class="section-kicker">${scene.eyebrow[language]}</div>
-      <h2>${scene.label[language]}</h2>
-      <p>${scene.summary[language]}</p>
-    </div>
-    <div class="bullet-box">
-      <h3>${scene.bullets.title[language]}</h3>
-      <ul class="bullet-list">
-        ${scene.bullets.items
-          .map((item) => `<li><span class="dot"></span><span>${item[language]}</span></li>`)
-          .join("")}
-      </ul>
-    </div>
-    <div class="meta-box">
-      <div class="meta-row"><span>${language === "ja" ? "Agent 名" : "Agent 名称"}</span><strong>${scene.agentName[language]}</strong></div>
-      <div class="meta-row"><span>${language === "ja" ? "Agent ID" : "Agent 标识"}</span><strong class="code">${scene.agentId}</strong></div>
-      <div class="meta-row"><span>${language === "ja" ? "接続先" : "接口入口"}</span><strong class="code">${scene.endpointHint}</strong></div>
-    </div>
-    <p>${scene.detail[language]}</p>
-  `;
-  sceneDetail.appendChild(wrap);
-  demoPrompt.value = scene.apiPrompt[language];
-  outputTitle.textContent = scene.label[language];
-  outputBadge.textContent = scene.agentId;
-  sampleResponse.innerHTML = `<div class="sample-label">${language === "ja" ? "サンプル応答" : "示例回复"}</div><p>${scene.exampleResponse[language]}</p>`;
-  outputNote.innerHTML = `<div class="note-label">${language === "ja" ? "説明" : "说明"}</div><p>${language === "ja" ? "右の出力欄に、選択したシーンの応答が表示されます。API が未接続の間は、商談用のフォールバック応答が使われます。" : "右侧输出区会显示所选场景的回复。API 尚未接入时，会使用适合拜访演示的兜底回复。"}</p>`;
-  outputResult.innerHTML = "";
-}
-
-function renderAll() {
-  document.querySelectorAll("[data-i18n]").forEach((node) => {
-    const key = node.dataset.i18n;
-    if (Object.prototype.hasOwnProperty.call(data[language], key)) {
-      node.textContent = data[language][key];
-    }
+function renderLanguage(language) {
+  languageButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.lang === language);
   });
-  renderNav();
-  renderStats();
-  renderPanel();
-  renderCapabilities();
-  renderTech();
-  renderScenes();
-  renderSceneDetail();
-  techToggle.textContent = techExpanded ? t("techToggleOpen") : t("techToggleClose");
-  demoButton.textContent = t("demoButton");
 }
 
-async function runDemo() {
-  const scene = scenes.find((item) => item.id === activeSceneId) || scenes[0];
-  demoButton.disabled = true;
-  const label = language === "ja" ? "応答を取得中..." : "正在获取回复...";
-  demoButton.textContent = label;
-  outputResult.innerHTML = "";
-  try {
-    const response = await fetch("/api/demo", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ sceneId: scene.id, language, prompt: demoPrompt.value }),
-    });
-    const result = await response.json();
-    outputResult.innerHTML = `
-      <div class="result-label">${result.mode === "mock" ? (language === "ja" ? "フォールバック応答" : "兜底回复") : (language === "ja" ? "API 応答" : "API 回复")}</div>
-      <p><strong>${result.result.title}</strong></p>
-      <p>${result.result.text}</p>
-    `;
-  } catch (error) {
-    outputResult.innerHTML = `<div class="result-label">${language === "ja" ? "エラー" : "错误"}</div><p>${language === "ja" ? "API の呼び出しに失敗しました。後で再試行するか、エンドポイント設定を確認してください。" : "API 调用失败。请稍后重试，或检查接口配置。"}</p>`;
-  } finally {
-    demoButton.disabled = false;
-    demoButton.textContent = t("demoButton");
-  }
+function render(language) {
+  renderStaticText(language);
+  renderNav(language);
+  renderValues(language);
+  renderTechnology(language);
+  renderScenarios(language);
+  renderAgents(language);
+  renderLanguage(language);
 }
 
-langButtons.forEach((button) => {
+languageButtons.forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.lang));
 });
 
-techToggle.addEventListener("click", () => {
-  techExpanded = !techExpanded;
-  renderTech();
+menuToggle.addEventListener("click", () => {
+  const isOpen = headerActions.classList.toggle("is-open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
-demoButton.addEventListener("click", runDemo);
-
-setLanguage(language);
+render(getLanguage());
