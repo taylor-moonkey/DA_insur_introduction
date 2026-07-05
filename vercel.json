@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": "",
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/agents/auto-renewal",
+      "destination": "/agents/auto-renewal/index.html"
+    },
+    {
+      "source": "/agents/insurance-consulting",
+      "destination": "/agents/insurance-consulting/index.html"
+    },
+    {
+      "source": "/agents/policy-service",
+      "destination": "/agents/policy-service/index.html"
+    },
+    {
+      "source": "/agents/internal-support",
+      "destination": "/agents/internal-support/index.html"
+    },
+    {
+      "source": "/agents/store-reservation",
+      "destination": "/agents/store-reservation/index.html"
+    }
+  ]
+}
